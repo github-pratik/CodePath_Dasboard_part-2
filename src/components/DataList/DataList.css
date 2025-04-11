@@ -18,6 +18,12 @@
   padding: 0 0.5rem;
 }
 
+.list-item-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .list-item {
   display: grid;
   grid-template-columns: 80px 2fr 1fr 1fr 1fr;
@@ -29,6 +35,7 @@
 
 .list-item:hover {
   background-color: var(--background-color);
+  cursor: pointer;
 }
 
 .list-item:last-child {

@@ -1,5 +1,5 @@
 :root {
-  /* These styles are now defined in App.css */
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -48,7 +48,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Removed media query for light/dark mode as we're using a consistent light theme */
+
 
 a {
   color: var(--primary-color);

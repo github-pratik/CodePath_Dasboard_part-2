@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Dashboard.css';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaInfoCircle } from 'react-icons/fa';
 import StatCard from '../StatCard/StatCard';
 import DataList from '../DataList/DataList';
+import PokemonCharts from '../Charts/PokemonCharts';
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -11,11 +12,13 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState('all');
+  const [showDataInfo, setShowDataInfo] = useState(false);
   
   // Statistics state
   const [totalPokemon, setTotalPokemon] = useState(0);
   const [averageBaseExperience, setAverageBaseExperience] = useState(0);
   const [typeCounts, setTypeCounts] = useState({});
+  const [interestingFacts, setInterestingFacts] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,6 +70,40 @@ const Dashboard = () => {
       });
     });
     setTypeCounts(types);
+    
+    // Calculate interesting facts
+    const facts = {};
+    
+    // Find heaviest and lightest Pokémon
+    const sortedByWeight = [...data].sort((a, b) => b.weight - a.weight);
+    facts.heaviestPokemon = {
+      name: sortedByWeight[0].name,
+      weight: (sortedByWeight[0].weight / 10).toFixed(1) // Convert to kg
+    };
+    facts.lightestPokemon = {
+      name: sortedByWeight[sortedByWeight.length - 1].name,
+      weight: (sortedByWeight[sortedByWeight.length - 1].weight / 10).toFixed(1)
+    };
+    
+    // Find tallest and shortest Pokémon
+    const sortedByHeight = [...data].sort((a, b) => b.height - a.height);
+    facts.tallestPokemon = {
+      name: sortedByHeight[0].name,
+      height: (sortedByHeight[0].height / 10).toFixed(1) // Convert to meters
+    };
+    facts.shortestPokemon = {
+      name: sortedByHeight[sortedByHeight.length - 1].name,
+      height: (sortedByHeight[sortedByHeight.length - 1].height / 10).toFixed(1)
+    };
+    
+    // Most common type
+    const sortedTypes = Object.entries(types).sort((a, b) => b[1] - a[1]);
+    facts.mostCommonType = {
+      type: sortedTypes[0][0],
+      count: sortedTypes[0][1]
+    };
+    
+    setInterestingFacts(facts);
   };
 
   // Filter data based on search query and type filter
@@ -101,6 +138,38 @@ const Dashboard = () => {
             />
           </div>
           
+          <div className="data-info-section">
+            <button 
+              className={`data-info-toggle ${showDataInfo ? 'active' : ''}`}
+              onClick={() => setShowDataInfo(!showDataInfo)}
+            >
+              <FaInfoCircle /> {showDataInfo ? 'Hide Data Insights' : 'Show Data Insights'}
+            </button>
+            
+            {showDataInfo && (
+              <div className="data-info-content">
+                <h2>Interesting Pokémon Facts</h2>
+                <div className="facts-grid">
+                  <div className="fact-card">
+                    <h3>Size Extremes</h3>
+                    <p>The tallest Pokémon is <strong>{interestingFacts.tallestPokemon?.name}</strong> at {interestingFacts.tallestPokemon?.height}m</p>
+                    <p>The shortest Pokémon is <strong>{interestingFacts.shortestPokemon?.name}</strong> at {interestingFacts.shortestPokemon?.height}m</p>
+                  </div>
+                  <div className="fact-card">
+                    <h3>Weight Extremes</h3>
+                    <p>The heaviest Pokémon is <strong>{interestingFacts.heaviestPokemon?.name}</strong> at {interestingFacts.heaviestPokemon?.weight}kg</p>
+                    <p>The lightest Pokémon is <strong>{interestingFacts.lightestPokemon?.name}</strong> at {interestingFacts.lightestPokemon?.weight}kg</p>
+                  </div>
+                  <div className="fact-card">
+                    <h3>Type Distribution</h3>
+                    <p>The most common type is <strong>{interestingFacts.mostCommonType?.type}</strong> with {interestingFacts.mostCommonType?.count} Pokémon</p>
+                    <p>Try filtering by type using the dropdown above to see Pokémon of a specific type!</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          
           <div className="filters">
             <div className="search-bar">
               <FaSearch />
@@ -128,6 +197,7 @@ const Dashboard = () => {
             </div>
           </div>
           
+          <PokemonCharts data={data} />
           <DataList data={filteredData} />
         </>
       )}

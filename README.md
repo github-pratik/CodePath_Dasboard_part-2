@@ -1,47 +1,38 @@
-# Web Development Project 5 - *Pokémon Dashboard*
+# Web Development Project 6 - *Pokémon Dashboard*
 
 Submitted by: **Pratik Patil**
 
-This web app: **A React-based dashboard that fetches and displays Pokémon data from the PokéAPI, allowing users to search and filter through Pokémon information**
+This web app: **A React-based dashboard that fetches and displays Pokémon data from the PokéAPI, allowing users to search, filter, and view detailed information about Pokémon**
 
-Time spent: **10** hours spent in total
+Time spent: **X** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [x] **The site has a dashboard displaying a list of data fetched using an API call**
-  - The dashboard displays 100 unique Pokémon, one per row
-  - Each row includes Pokémon image, name, type, height, and base experience
-- [x] **`useEffect` React hook and `async`/`await` are used**
-  - useEffect is used to fetch data when the component mounts
-  - async/await is used for API calls to PokéAPI
-- [x] **The app dashboard includes at least three summary statistics about the data** 
-  - The app dashboard includes the following statistics:
-    - Total number of Pokémon displayed
-    - Average base experience across all Pokémon
-    - Total number of unique Pokémon types
-- [x] **A search bar allows the user to search for an item in the fetched data**
-  - The search bar correctly filters Pokémon by name
-  - The list of results dynamically updates as the user types into the search bar
-- [x] **An additional filter allows the user to restrict displayed items by specified categories**
-  - The filter restricts Pokémon by type, which is different from the name search
-  - The filter correctly displays only Pokémon matching the selected type
-  - The dashboard list dynamically updates as the user adjusts the type filter
+- [ ] **Clicking on an item in the list view displays more details about it**
+  - Clicking on an item in the dashboard list navigates to a detail view for that item
+  - Detail view includes extra information about the item not included in the dashboard view
+  - The same sidebar is displayed in detail view as in dashboard view
+  - *To ensure an accurate grade, your sidebar **must** be viewable when showing the details view in your recording.*
+- [ ] **Each detail view of an item has a direct, unique URL link to that item's detail view page**
+  -  *To ensure an accurate grade, the URL/address bar of your web browser **must** be viewable in your recording.*
+- [ ] **The app includes at least two unique charts developed using the fetched data that tell an interesting story**
+  - At least two charts should be incorporated into the dashboard view of the site
+  - Each chart should describe a different aspect of the dataset
+
 
 The following **optional** features are implemented:
 
-- [ ] Multiple filters can be applied simultaneously
-- [x] Filters use different input types
-  - Text input for the search bar
-  - Dropdown selection for the type filter
-- [ ] The user can enter specific bounds for filter values
+- [ ] The site's customized dashboard contains more content that explains what is interesting about the data 
+  - e.g., an additional description, graph annotation, suggestion for which filters to use, or an additional page that explains more about the data
+- [ ] The site allows users to toggle between different data visualizations
+  - User should be able to use some mechanism to toggle between displaying and hiding visualizations 
 
+  
 The following **additional** features are implemented:
 
-* [x] Responsive design that works on both desktop and mobile devices
-* [x] Visual type badges that are color-coded based on Pokémon type
-* [x] Loading state displayed while fetching data
+* [ ] List anything else that you added to improve the site's functionality!
 
 ## Video Walkthrough
 
@@ -49,14 +40,16 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+<!-- Replace this with whatever GIF tool you used! -->
+GIF created with ...  
+<!-- Recommended tools:
+[Kap](https://getkap.co/) for macOS
+[ScreenToGif](https://www.screentogif.com/) for Windows
+[peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
 
-Challenges encountered while building the app:
-- Managing the complex nested structure of the PokéAPI responses
-- Implementing proper error handling for API requests
-- Optimizing performance when fetching detailed data for multiple Pokémon
-- Creating a responsive design that works well on different screen sizes
+Describe any challenges encountered while building the app.
 
 ## License
 
