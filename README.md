@@ -6,6 +6,8 @@ This web app: **A React-based dashboard that fetches and displays Pokémon data 
 
 Time spent: **10** hours spent in total
 
+## Link - https://code-path-dasboard-part-2.vercel.app/
+
 ## Required Features
 
 The following **required** functionality is completed:
